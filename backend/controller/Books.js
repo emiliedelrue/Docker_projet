@@ -4,7 +4,7 @@ import Book from "../models/Books.js";
 export const getBooks = async (req, res) => {
     try {
         const books = await Book.find();
-        res.json(books);
+        res.status(200).json(books);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -22,7 +22,7 @@ export const getBook = async (req, res) => {
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
         }
-        res.json(book);
+        res.status(200).json(book);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -68,7 +68,7 @@ export const updateBook = async (req, res) => {
         if (!updatedBook) {
             return res.status(404).json({ message: "Book not found" });
         }
-        res.json(updatedBook);
+        res.status(200).json({ message: "Book was updated successfully!" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -86,7 +86,7 @@ export const deleteBook = async (req, res) => {
         if (!deletedBook) {
             return res.status(404).json({ message: "Book not found" });
         }
-        res.json({ message: "Book was deleted successfully!" });
+        res.status(200).json({ message: "Book was deleted successfully!" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
