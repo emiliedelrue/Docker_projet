@@ -2,6 +2,7 @@ import express from 'express';
 import { connectDB } from './config/db.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import BooksRouter from './routes/Books.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -16,9 +17,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use('/api/books', BooksRouter);
 
-app.get('/', (req, res) => {
-    res.send('API is running...');
+app.get('/status', (req, res) => {
+    res.json({ message: 'API is running...' });
 });
 
 app.listen(PORT, () => {
