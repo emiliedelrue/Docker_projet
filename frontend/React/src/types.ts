@@ -1,12 +1,12 @@
 export interface Book {
     _id: string,
-    name: string,
-    auteur: string,
+    title: string,
+    author: string,
     ISBN: number
 }
 
 export interface FormField{
-	type: "text" | "number",
-	name: string,
+	title: "text" | "number",
+	author: string,
 	placeholder: string
 }

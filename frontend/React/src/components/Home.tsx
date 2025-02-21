@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Book } from '../types.ts';
 
-
 const renderTable = (data: Book[]) => {
         return (<table className="table table-dark">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Auteur</th>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
               <th scope="col">ISBN</th>
             </tr>
           </thead>
@@ -18,10 +17,10 @@ const renderTable = (data: Book[]) => {
             {
                 data.map((book, index) => {
                     return (
-                        <tr key={index} scope="row">
+                        <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{book.name}</td>
-                            <td>{book.auteur}</td>
+                            <td>{book.title}</td>
+                            <td>{book.author}</td>
                             <td>{book.ISBN}</td>
                             <td>
                                 <Link to={`/read/${book._id}`} className='btn btn-info'>Read</Link>
@@ -42,8 +41,9 @@ function Home() {
 	useEffect(() => {
         const getProducts  = async () => {
             try {
-                const res = await axios.get('http://localhost:5100/api/Books');
-                setProducts(res.data.message);
+                const res = await axios.get('http://localhost:5201/api/books');
+                console.log(res.data);
+                setProducts(res.data);
             } catch (error) {
                 console.log(error);
             }
@@ -51,11 +51,11 @@ function Home() {
 	getProducts();
 	},[])
 	return (
-    <>
-	<h1>Home</h1>
-	<Link to='/create' className='btn btn-success'>Create +</Link>
-    {renderTable(products)}
-    </>
+        <>
+        <h1>Home</h1>
+        <Link to='/create' className='btn btn-success'>Create +</Link>
+        {renderTable(products)}
+        </>
 	);
 }
 
