@@ -11,6 +11,7 @@ const renderTable = (data: Book[]) => {
               <th scope="col">Title</th>
               <th scope="col">Author</th>
               <th scope="col">ISBN</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -22,7 +23,7 @@ const renderTable = (data: Book[]) => {
                             <td>{book.title}</td>
                             <td>{book.author}</td>
                             <td>{book.ISBN}</td>
-                            <td>
+                            <td className='d-flex justify-content-around'>
                                 <Link to={`/read/${book._id}`} className='btn btn-info'>Read</Link>
                                 <Link to={`/update/${book._id}`} className='btn btn-primary'>Edit</Link>
                                 <Link to={`/delete/${book._id}`} className='btn btn-danger'>Delete</Link>
@@ -51,11 +52,11 @@ function Home() {
 	getProducts();
 	},[])
 	return (
-        <>
-        <h1>Home</h1>
-        <Link to='/create' className='btn btn-success'>Create +</Link>
-        {renderTable(products)}
-        </>
+        <div className='container mt-5 text-center d-flex flex-column' style={{ gap: '10px' }}>
+            <h1>Home</h1>
+            {renderTable(products)}
+            <Link to='/create' className='btn btn-success'>Create +</Link>
+        </div>
 	);
 }
 

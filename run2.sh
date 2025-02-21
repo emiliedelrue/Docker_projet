@@ -1,0 +1,1 @@
+docker run -it --rm --name react-container-app --network network-projet-final --network-alias frontend -p 5173:5173 --mount type=bind,source="$(pwd)"/,target=/app node-dev-image

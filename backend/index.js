@@ -5,11 +5,11 @@ import cors from 'cors';
 import BooksRouter from './routes/Books.js';
 
 dotenv.config();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'http://localhost:5173', // '*' for all
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use('/api/books', BooksRouter);
 
 app.get('/status', (req, res) => {
-    res.json({ message: 'API is running...' });
+    res.status(200).json({ message: 'Server is running' });
 });
 
 app.listen(PORT, () => {

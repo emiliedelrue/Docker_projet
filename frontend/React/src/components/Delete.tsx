@@ -18,7 +18,7 @@ function Delete(){
 	useEffect(() => {
 		const deleteBook = async () => {
 			try {
-				const res = await axios.delete(`http://localhost:5100/api/Book/${id}`);
+				const res = await axios.delete(`http://localhost:5201/api/books/${id}`);
 				console.log(res);
 				setLoading(false);
 			} catch (error) {
