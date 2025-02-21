@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home.tsx';
+import CreateBook from './components/Create.tsx';
+import UpdateBook from './components/Update.tsx';
+import ReadBook from './components/Read.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -7,6 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/create' element={<CreateBook />} />
+        <Route path='/update/:id' element={<UpdateBook />} />
+        <Route path='/read/:id' element={<ReadBook />} />
       </Routes>
     </BrowserRouter>
   );
