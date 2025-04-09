@@ -1,16 +1,23 @@
-FROM node:latest
- 
-RUN npm install -g npm@11.1.0
- 
+FROM node:18
+
+# Définir le répertoire de travail
 WORKDIR /app
- 
-COPY package*.json .
- 
-RUN npm i
- 
+
+# Copier les fichiers package*.json
+COPY package*.json ./
+
+# Nettoyer et installer les dépendances
+RUN npm cache clean --force
+RUN npm install
+
+# Copier le reste des fichiers de l'application
 COPY . .
- 
-CMD ["node", "server.js"]
- 
- 
- 
+
+# Configuration pour éviter les problèmes de permissions avec les volumes
+RUN mkdir -p node_modules/.vite
+
+# Exposer le port pour Vite
+EXPOSE 5173
+
+# Définir explicitement la commande de démarrage
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
