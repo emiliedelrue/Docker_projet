@@ -14,10 +14,10 @@ services:
     volumes:
       - ./backend:/app
     ports:
-      - "3000:3000"
+      - "5201:5201"
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/bookstore
-      - PORT=3000
+      - MONGO_URI=mongodb://db-container:27017/yourdb
+      - PORT=5201
     networks:
       - app-network
     depends_on:
