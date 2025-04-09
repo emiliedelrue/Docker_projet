@@ -1,0 +1,48 @@
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: db-container
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+  backend:
+    build: ./backend
+    container_name: express-app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/bookstore
+      - PORT=3000
+    networks:
+      - app-network
+    depends_on:
+      - mongodb
+    command: bash -c "cd /app && npm install && npm run dev"
+
+  frontend:
+    build: ./frontend
+    container_name: react-container-app
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/index.html:/app/index.html
+      - ./frontend/vite.config.js:/app/vite.config.js
+      - ./frontend/tsconfig.json:/app/tsconfig.json
+      - ./frontend/tsconfig.node.json:/app/tsconfig.node.json
+    ports:
+      - "5173:5173"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+
+volumes:
+  mongodb_data:

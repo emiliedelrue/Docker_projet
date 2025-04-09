@@ -6,6 +6,8 @@ This project is a MERN (MongoDB, Express.js, React.js, Node.js) application. The
 
 # Instructions pour lancer l'application
 
+## Sans docker-compse
+
 Pour lancer l'application, suivez les étapes ci-dessous :
 
 1. Ouvrez un terminal et exécutez la commande suivante :
@@ -19,3 +21,10 @@ Pour lancer l'application, suivez les étapes ci-dessous :
     ```
 
 Assurez-vous que les deux scripts s'exécutent correctement pour que l'application fonctionne comme prévu.
+
+## Avec docker-compose
+
+Ouvrez un terminal et exécutez la commande suivante :
+    ```sh
+    docker compose up
+    ```
