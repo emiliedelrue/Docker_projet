@@ -22,8 +22,8 @@ docker build ./backend -t express-project
 echo "Starting backend container..."
 docker run -it --name express-app \
     --network network-projet-final \
-    -p 3000:3000 \
+    -p 5201:5201 \
     -v "$(pwd)/backend":/app \
     -e MONGODB_URI="mongodb://db-container:27017/bookstore" \
-    -e PORT=3000 \
+    -e PORT=5201 \
     express-project bash -c "cd /app && npm install && npm run dev"
